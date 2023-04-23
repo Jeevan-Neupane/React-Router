@@ -14,6 +14,10 @@ import HelpLayout from "./Layouts/HelpLayout";
 import Faq from "./Pages/Help/faq";
 import Contact from "./Pages/Help/contact";
 import NotFound from "./Pages/NotFound";
+import CareerLayout from "./Layouts/CareerLayout";
+import Career from "./Pages/Career/Career";
+import careerLoaders, { careerDetails } from "./Fetch Api/fetchJob";
+import CareerDetail from "./Pages/Career/CareerDetail";
 
 function App() {
   const router = createBrowserRouter(
@@ -25,6 +29,11 @@ function App() {
         <Route path="help" element={<HelpLayout/>}>
           <Route path="faq" element={<Faq/>}/>
           <Route path="contact" element={<Contact/>}/>
+          
+        </Route>
+        <Route path="careers" element={<CareerLayout/>}>
+          <Route index element={<Career/>} loader={careerLoaders}/>
+          <Route path=":id" element={<CareerDetail/>} loader={careerDetails}/>
           
         </Route>
 
