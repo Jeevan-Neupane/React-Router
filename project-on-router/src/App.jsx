@@ -18,6 +18,8 @@ import CareerLayout from "./Layouts/CareerLayout";
 import Career from "./Pages/Career/Career";
 import careerLoaders, { careerDetails } from "./Fetch Api/fetchJob";
 import CareerDetail from "./Pages/Career/CareerDetail";
+import CarrerError from "./Pages/Career/CarrerError";
+import contactAction from "./Pages/Help/contactAction";
 
 function App() {
   const router = createBrowserRouter(
@@ -28,12 +30,12 @@ function App() {
         <Route path="about" element={<About />}></Route>
         <Route path="help" element={<HelpLayout/>}>
           <Route path="faq" element={<Faq/>}/>
-          <Route path="contact" element={<Contact/>}/>
+          <Route path="contact" element={<Contact/>} action={contactAction}/>
           
         </Route>
-        <Route path="careers" element={<CareerLayout/>}>
-          <Route index element={<Career/>} loader={careerLoaders}/>
-          <Route path=":id" element={<CareerDetail/>} loader={careerDetails}/>
+        <Route path="careers" element={<CareerLayout/>} errorElement={<CarrerError/>}>
+          <Route index element={<Career/>} loader={careerLoaders} />
+          <Route path=":id" element={<CareerDetail/>} loader={careerDetails} />
           
         </Route>
 
